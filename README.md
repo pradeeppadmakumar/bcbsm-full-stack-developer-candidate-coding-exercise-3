@@ -1,4 +1,4 @@
-# bcbsm-full-stack-developer-candidate-coding-exercise-3 
+# BCBSM Full Stack Developer Candidate Coding Exercise
   
 ## Requirements:
 1.	Create a single page web application with a login screen (username, password)
