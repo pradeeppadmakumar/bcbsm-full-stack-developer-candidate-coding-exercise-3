@@ -24,6 +24,7 @@ import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 
 import static org.springframework.security.web.util.matcher.AntPathRequestMatcher.antMatcher;
 
@@ -32,8 +33,11 @@ public class SecurityConfiguration {
 
     private final RSAKeyProperties keys;
 
-    public SecurityConfiguration(RSAKeyProperties keys) {
+    private final LogoutHandler logoutHandler;
+
+    public SecurityConfiguration(RSAKeyProperties keys, LogoutHandler logoutHandler) {
         this.keys = keys;
+        this.logoutHandler = logoutHandler;
     }
 
     @Bean
