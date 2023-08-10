@@ -7,7 +7,10 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.Instant;
 
@@ -15,6 +18,9 @@ import java.time.Instant;
 @Table(name = "company_events")
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
+@Getter
+@Setter
 public class Event {
 
     @Id
@@ -22,57 +28,10 @@ public class Event {
     @Column(name = "feedback_id")
     private Long id;
 
-    private String eventTitle;
-    private String eventDescription;
-    private String eventImageLink;
-    private Instant eventTime;
-    private String eventDuration;
+    private String title;
+    private String description;
+    private String imageLink;
+    private Instant time;
+    private String duration;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getEventTitle() {
-        return eventTitle;
-    }
-
-    public void setEventTitle(String eventTitle) {
-        this.eventTitle = eventTitle;
-    }
-
-    public String getEventDescription() {
-        return eventDescription;
-    }
-
-    public void setEventDescription(String eventDescription) {
-        this.eventDescription = eventDescription;
-    }
-
-    public String getEventImageLink() {
-        return eventImageLink;
-    }
-
-    public void setEventImageLink(String eventImageLink) {
-        this.eventImageLink = eventImageLink;
-    }
-
-    public Instant getEventTime() {
-        return eventTime;
-    }
-
-    public void setEventTime(Instant eventTime) {
-        this.eventTime = eventTime;
-    }
-
-    public String getEventDuration() {
-        return eventDuration;
-    }
-
-    public void setEventDuration(String eventDuration) {
-        this.eventDuration = eventDuration;
-    }
 }

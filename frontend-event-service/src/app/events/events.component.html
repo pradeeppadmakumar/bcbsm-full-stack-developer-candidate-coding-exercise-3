@@ -1,1 +1,15 @@
-<p>events works!</p>
+<div class="card-group">
+    <div class="card" style="width: 18rem;" *ngFor="let event of events">
+      <img class="card-img-top" src="{{event.imageLink}}" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{event.title}}</h5>
+        <!--<p class="card-text">{{event.description}}</p>-->
+        <p class="card-text"><small class="text-muted">{{event.eventDate}}</small></p>
+        <p class="card-text"><small class="text-muted">{{event.eventDuration}}</small></p>
+        <div class="col-md-12  text-right">
+          <button type="button" class="btn btn-warning">More Details</button>
+        </div>
+      </div>
+    </div>
+
+</div>

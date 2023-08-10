@@ -33,11 +33,9 @@ public class SecurityConfiguration {
 
     private final RSAKeyProperties keys;
 
-    private final LogoutHandler logoutHandler;
 
-    public SecurityConfiguration(RSAKeyProperties keys, LogoutHandler logoutHandler) {
+    public SecurityConfiguration(RSAKeyProperties keys) {
         this.keys = keys;
-        this.logoutHandler = logoutHandler;
     }
 
     @Bean
@@ -45,7 +43,7 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(antMatcher("/auth/**")).permitAll();
+                    auth.requestMatchers(antMatcher("/auth/**"), antMatcher("/api/v1/event/**")).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/admin/**")).hasRole("ADMIN");
                     auth.requestMatchers(antMatcher("/api/v1/user/**")).hasAnyRole("ADMIN", "USER");
                     auth.anyRequest().authenticated();
