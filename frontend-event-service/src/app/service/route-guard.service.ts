@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { HardCodedAuthenticationService } from './../service/hard-coded-authentication.service';
+import { JwtAuthenticationService } from './../service/jwt-authentication.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RouteGuardService implements CanActivate{
 
-  constructor(public hardCodedAuthenticationService: HardCodedAuthenticationService) { }
+  constructor(public jwtAuthenticationService: JwtAuthenticationService) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    if(this.hardCodedAuthenticationService.isUserLoggedIn())
+    if(this.jwtAuthenticationService.isUserLoggedIn())
       return true;
 
     return false;

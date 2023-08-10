@@ -40,7 +40,7 @@ public class EventFeedbackServiceApplication implements CommandLineRunner {
 
 		roles.add(adminRole);
 
-		ApplicationUser admin = new ApplicationUser(1L, "admin", encoder.encode("password"), roles);
+		ApplicationUser admin = new ApplicationUser(1L, "admin", encoder.encode("ironMan"), roles);
 
 		userRepository.save(admin);
 	}

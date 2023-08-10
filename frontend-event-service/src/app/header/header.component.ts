@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HardCodedAuthenticationService } from './../service/hard-coded-authentication.service';
+import { JwtAuthenticationService } from './../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { HardCodedAuthenticationService } from './../service/hard-coded-authenti
 export class HeaderComponent {
 
 
-  constructor(public hardCodedAuthenticationService: HardCodedAuthenticationService) {
+  constructor(public jwtAuthenticationService: JwtAuthenticationService) {
   }
 
 

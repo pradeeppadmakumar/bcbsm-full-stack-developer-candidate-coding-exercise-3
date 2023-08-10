@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { HardCodedAuthenticationService } from './../service/hard-coded-authentication.service';
+import { JwtAuthenticationService } from './../service/jwt-authentication.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +13,7 @@ export class LoginComponent {
   password = ''
   isInvalidCredentials = false
 
-  constructor(private router: Router, private hardCodedAuthenticationService: HardCodedAuthenticationService) {
+  constructor(private router: Router, private jwtAuthenticationService: JwtAuthenticationService) {
   }
 
   handleSignIn() {
@@ -21,13 +21,18 @@ export class LoginComponent {
   }
 
   handleLogin() {
-    if(this.hardCodedAuthenticationService.authenticate(this.email, this.password)) {
-      this.router.navigate(['/'])
-    }
-    else {
-      this.isInvalidCredentials = true;
-    }
-
+       this.jwtAuthenticationService.authenticate(this.email, this.password)
+          .subscribe(
+            data => {
+              console.log(data)
+              this.router.navigate(['/'])
+              this.isInvalidCredentials = false
+            },
+            error => {
+              console.log(error)
+              this.isInvalidCredentials = true
+            }
+          )
   }
 
   handleLogout() {
