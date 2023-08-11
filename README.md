@@ -26,9 +26,19 @@ frontend implementation is in folder : frontend-event-service
 
 default users available:
 
-username    |   password
+username : admin  
+password: admin  
+role: admin  
 
-admin       |   admin
-pradeep     |   pradeepPadmakumar
-user1       |   user1Password
-user2       |   user2Password
+
+username : pradeep  
+password: pradeepPadmakumar  
+role: user  
+
+username : user1  
+password: user1Password  
+role: user  
+
+username : user2  
+password: user2Password  
+role: user  
