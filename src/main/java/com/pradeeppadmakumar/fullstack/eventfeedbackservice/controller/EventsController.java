@@ -27,7 +27,6 @@ public class EventsController {
 
     @GetMapping("/")
     public ResponseEntity<List<Event>> getAllEvents() {
-        System.out.println("pradeep 1");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Headers", "*");
         return ResponseEntity.ok().headers(headers).body(eventService.getAllEvents());
@@ -35,7 +34,6 @@ public class EventsController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Event> getEventsById(@PathVariable Long id) {
-        System.out.println("pradeep 2");
         HttpHeaders headers = new HttpHeaders();
         headers.add("Access-Control-Allow-Headers", "*");
         return ResponseEntity.ok().headers(headers).body(eventService.findEventById(id));

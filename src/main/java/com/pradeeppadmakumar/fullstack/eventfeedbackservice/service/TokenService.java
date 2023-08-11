@@ -1,10 +1,10 @@
 package com.pradeeppadmakumar.fullstack.eventfeedbackservice.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.oauth2.jwt.JwtClaimsSet;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.JwtEncoderParameters;
 import org.springframework.stereotype.Service;
@@ -13,16 +13,14 @@ import java.time.Instant;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
+@Slf4j
 public class TokenService {
 
-    @Autowired
-    private JwtEncoder jwtEncoder;
-
-    @Autowired
-    private JwtDecoder jwtDecoder;
+    private final JwtEncoder jwtEncoder;
 
     public String generateJwt(Authentication auth) {
-
+        log.info("generating jwt token");
         Instant now = Instant.now();
 
         String scope = auth.getAuthorities().stream()

@@ -27,7 +27,7 @@ frontend implementation is in folder : frontend-event-service
 default users available:
 
 username : admin  
-password: admin  
+password: passwordForAdmin  
 role: admin  
 
 
@@ -42,3 +42,45 @@ role: user
 username : user2  
 password: user2Password  
 role: user  
+
+
+#Curl commands
+
+1.  Register user   
+        curl --location --request POST 'localhost:8080/auth/register' \
+        --header 'Content-Type: application/json' \
+        --data-raw '{
+        "username": "newuser",
+        "password": "samplePassword",
+        "name": "new user",
+        "email": "new.user@demo.com"
+        }'
+2.  Login user (use username and password from above)  
+    curl --location --request POST 'localhost:8080/auth/login' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+    "username": "newuser",
+    "password": "samplePassword"
+    }'
+3.  Get All events details
+    curl --location --request GET 'localhost:8080/api/v1/event/' \
+    --header 'Authorization: Bearer <jwt token from the login response>'
+4.  Get event details by event ID
+    curl --location --request GET 'localhost:8080/api/v1/event/1' \
+    --header 'Origin: http://localhost:4200' \
+    --header 'Authorization: Bearer <jwt token from the login response>'
+5. Create Feedback by User
+   curl --location --request POST 'localhost:8080/api/v1/user/6/event/2/feedback' \
+   --header 'Authorization: Bearer  <USER jwt token from the login response>' \
+   --header 'Content-Type: application/json' \
+   --data-raw '{
+   "comment": "Great Experience!!!",
+   "rating": 5
+   }'
+6. Get Feedback for User
+   curl --location --request GET 'localhost:8080/api/v1/user/6/event/2/feedback' \
+   --header 'Authorization: Bearer <USER jwt token from the login response>'
+7. Get All Feedbacks for Event by Admin
+   curl --location --request GET 'localhost:8080/api/v1/admin/1/event/2/feedback' \
+   --header 'Authorization: Bearer <ADMIN jwt token from the login response>'
+   

@@ -50,13 +50,13 @@ public class EventFeedbackServiceApplication implements CommandLineRunner {
 
 		roles.add(adminRole);
 
-		ApplicationUser admin = new ApplicationUser(0L, "admin", encoder.encode("admin"), "admin", "admin@bcbs.com", roles);
+		ApplicationUser admin = new ApplicationUser(0L, "admin", encoder.encode("passwordForAdmin"), "admin", "admin@bcbs.com", roles);
 		userRepository.save(admin);
 
 		Set<Role> userRoles = new HashSet<>();
 		userRoles.add(userRole);
 
-		ApplicationUser user1 = new ApplicationUser(0L, "pradeep", encoder.encode("ironMan"), "pradeepPadmakumar", "pradeep@gmail.com", userRoles);
+		ApplicationUser user1 = new ApplicationUser(0L, "pradeep", encoder.encode("pradeepPadmakumar"), "pradeep Padmakumar", "pradeep@gmail.com", userRoles);
 
 
 		ApplicationUser user2 = new ApplicationUser(0L, "user1", encoder.encode("user1Password"), "user 1", "user1@gmail.com", userRoles);
@@ -99,10 +99,6 @@ public class EventFeedbackServiceApplication implements CommandLineRunner {
 		Event savedEvent1 = eventRepository.save(event1);
 		Event savedEvent2 = eventRepository.save(event2);
 		Event savedEvent3 = eventRepository.save(event3);
-
-		System.out.println(savedEvent1.getId());
-		System.out.println(savedEvent2.getId());
-		System.out.println(savedEvent3.getId());
 
 		eventRepository.flush();
 
