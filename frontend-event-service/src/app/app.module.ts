@@ -15,6 +15,7 @@ import { EventsComponent } from './events/events.component';
 import { ErrorComponent } from './error/error.component';
 import { FeedbackComponent } from './feedback/feedback.component';
 import { LogoutComponent } from './logout/logout.component';
+import { EventComponent } from './events/event/event.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { LogoutComponent } from './logout/logout.component';
     EventsComponent,
     ErrorComponent,
     FeedbackComponent,
-    LogoutComponent
+    LogoutComponent,
+    EventComponent
   ],
   imports: [
     BrowserModule,

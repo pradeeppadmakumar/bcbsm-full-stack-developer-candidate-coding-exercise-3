@@ -8,9 +8,6 @@ import { JwtAuthenticationService } from './../service/jwt-authentication.servic
 })
 export class HeaderComponent {
 
-
   constructor(public jwtAuthenticationService: JwtAuthenticationService) {
   }
-
-
 }

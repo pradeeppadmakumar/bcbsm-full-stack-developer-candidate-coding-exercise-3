@@ -1,16 +1,23 @@
 package com.pradeeppadmakumar.fullstack.eventfeedbackservice.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Version;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -21,6 +28,7 @@ import java.time.Instant;
 @NoArgsConstructor
 @Getter
 @Setter
+@Builder
 public class Feedback {
 
     @Id
@@ -38,10 +46,16 @@ public class Feedback {
     private int version;
 
     @ManyToOne
-    private ApplicationUser customer;
+    @JoinColumn(name = "user_id")
+    private ApplicationUser user;
 
     private int rating;
 
     private String comment;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
+    @JsonIgnore
+    private Event event;
 
 }

@@ -9,7 +9,7 @@ import { JwtAuthenticationService } from './../service/jwt-authentication.servic
 })
 export class LoginComponent {
 
-  email = ''
+  username = ''
   password = ''
   isInvalidCredentials = false
 
@@ -21,11 +21,11 @@ export class LoginComponent {
   }
 
   handleLogin() {
-       this.jwtAuthenticationService.authenticate(this.email, this.password)
+       this.jwtAuthenticationService.authenticate(this.username, this.password)
           .subscribe(
             data => {
               console.log(data)
-              this.router.navigate(['/'])
+              this.router.navigate(['/events'])
               this.isInvalidCredentials = false
             },
             error => {

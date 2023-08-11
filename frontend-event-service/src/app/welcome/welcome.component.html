@@ -1,1 +1,3 @@
-<p>welcome works!</p>
+<p class="text-center fs-3">Welcome to BCBS Event Portal</p>
+<p class="text-center fs-3" *ngIf="!this.jwtAuthenticationService.isUserLoggedIn()">Login to view the latest updates on events</p>
+<p class="text-center fs-3" *ngIf="this.jwtAuthenticationService.isUserLoggedIn()">{{this.jwtAuthenticationService.getAuthenticatedUser()}}</p>

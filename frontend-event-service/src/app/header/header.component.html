@@ -1,18 +1,35 @@
-
-
-<div class="container">
-  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-
-    <h3 style="color:blue">BCBS FullStack Assessment</h3>
-
-    <ul class="nav nav-pills col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-      <li><a routerLink="/" class="nav-link px-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >Home</a></li>
-      <li><a routerLink="/events" *ngIf="this.jwtAuthenticationService.isUserLoggedIn()"  class="nav-link px-2 " [routerLinkActive]="['active']"  >Events</a></li>
-    </ul>
-
-    <div class="col-md-3 text-end">
-      <button type="button" *ngIf="!this.jwtAuthenticationService.isUserLoggedIn()" routerLink="/login"  class="btn btn-outline-primary me-2">Login / Sign-up</button>
-      <button type="button" *ngIf="this.jwtAuthenticationService.isUserLoggedIn()" routerLink="/logout"  class="btn btn-outline-primary me-2">Logout</button>
+<header>
+  <nav class="navbar navbar-expand-lg  navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/" >BCBS FullStack Assessment</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a routerLink="/" class="nav-link px-2" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >Home</a>
+          </li>
+          <li class="nav-item">
+            <a routerLink="/events" *ngIf="this.jwtAuthenticationService.isUserLoggedIn()"  class="nav-link px-2 " [routerLinkActive]="['active']">Events</a>
+          </li>
+        </ul>
+      </div>
+      <span class="d-flex">
+        <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+          <span class="navbar-text fw-bolder text-white "  *ngIf="this.jwtAuthenticationService.isUserLoggedIn()">
+            welcome {{this.jwtAuthenticationService.getAuthenticatedUser()}}
+          </span>
+          <li class="nav-item">
+            <a  class="nav-link px-2" *ngIf="!this.jwtAuthenticationService.isUserLoggedIn()" routerLink="/login" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >Login / Sign-up</a>
+          </li>
+          <li class="nav-item">
+            <a  class="nav-link px-2" *ngIf="this.jwtAuthenticationService.isUserLoggedIn()" routerLink="/logout" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" >Logout</a>
+          </li>
+        </ul>
+      </div>
+      </span>
     </div>
-  </header>
-</div>
+  </nav>
+</header>

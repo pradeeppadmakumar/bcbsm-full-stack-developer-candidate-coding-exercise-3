@@ -1,15 +1,23 @@
-<div class="card-group">
-    <div class="card" style="width: 18rem;" *ngFor="let event of events">
-      <img class="card-img-top" src="{{event.imageLink}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{event.title}}</h5>
-        <!--<p class="card-text">{{event.description}}</p>-->
-        <p class="card-text"><small class="text-muted">{{event.eventDate}}</small></p>
-        <p class="card-text"><small class="text-muted">{{event.eventDuration}}</small></p>
-        <div class="col-md-12  text-right">
-          <button type="button" class="btn btn-warning">More Details</button>
-        </div>
+
+<div class="well"  *ngFor="let event of events">
+  <div class="row">
+    <div class="col-sm-3" >
+      <img src="{{event.imageLink}}" class="img-thumbnail" alt="...">
+    </div>
+    <div class="col-sm-7" >
+      <div class="row">
+        <p class="fs-3">{{event.title}}</p>
+      </div>
+      <div class="row">
+        <p class="fs-5">{{event.time}}</p>
+      </div>
+      <div class="row">
+        <p class="fs-5">{{event.duration}}</p>
       </div>
     </div>
+    <div class="col-sm-2 align-middle">
+      <button type="button" class="btn btn-warning" (click)=routeToEvent(event.id) >More Details</button>
+    </div>
 
+  </div>
 </div>

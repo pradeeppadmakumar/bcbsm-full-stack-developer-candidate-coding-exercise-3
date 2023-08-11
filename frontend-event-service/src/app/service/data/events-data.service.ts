@@ -5,19 +5,6 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 
-
-/* export class Event {
-  constructor(
-    public id: number,
-    public imageLink: string,
-    public time: string,
-    public duration: string,
-    public title: string,
-    public description: string,
-  ) {}
-} */
-
-
 export class EventsDataService {
 
   constructor(
@@ -27,4 +14,8 @@ export class EventsDataService {
   executeEventsService() {
     return this.http.get<any>('http://localhost:8080/api/v1/event/');
   }
+
+  getEventById(id: string) {
+      return this.http.get<any>('http://localhost:8080/api/v1/event/' + id);
+    }
 }

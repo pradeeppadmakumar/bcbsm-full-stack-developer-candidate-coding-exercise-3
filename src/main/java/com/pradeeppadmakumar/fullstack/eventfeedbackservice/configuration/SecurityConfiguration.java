@@ -43,9 +43,10 @@ public class SecurityConfiguration {
         return http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers(antMatcher("/auth/**")).permitAll();
+                    auth.requestMatchers( antMatcher("/auth/**"), antMatcher("/api/v1/event/**")
+                    ).permitAll();
                     auth.requestMatchers(antMatcher("/api/v1/admin/**")).hasRole("ADMIN");
-                    auth.requestMatchers(antMatcher("/api/v1/user/**"), antMatcher("/api/v1/event/**")).hasAnyRole("ADMIN", "USER");
+                    auth.requestMatchers(antMatcher("/api/v1/user/**")).hasAnyRole("ADMIN", "USER");
                     auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer((oauth2) -> oauth2.jwt(jwt -> jwtAuthenticationConverter()))

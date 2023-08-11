@@ -19,3 +19,16 @@
 Springboot  
 Angular/NextJS/ReactJS  
 MongoDB/MySql
+
+
+# Pradeep Padmakumar (developer notes):
+frontend implementation is in folder : frontend-event-service
+
+default users available:
+
+username    |   password
+
+admin       |   admin
+pradeep     |   pradeepPadmakumar
+user1       |   user1Password
+user2       |   user2Password

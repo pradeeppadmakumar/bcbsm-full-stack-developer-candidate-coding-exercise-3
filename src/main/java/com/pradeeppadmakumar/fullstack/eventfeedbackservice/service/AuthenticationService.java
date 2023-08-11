@@ -37,7 +37,7 @@ public class AuthenticationService {
     @Autowired
     private TokenService tokenService;
 
-    public ApplicationUser registerUser(String username, String password) {
+    public ApplicationUser registerUser(String username, String password, String name, String email) {
         String encodedPassword = passwordEncoder.encode(password);
 
         Role userRole = roleRepository.findByAuthority("USER").get();
@@ -45,7 +45,7 @@ public class AuthenticationService {
         Set<Role> roles = new HashSet<>();
         roles.add(userRole);
 
-        return userRepository.save(new ApplicationUser(0L, username, encodedPassword, roles));
+        return userRepository.save(new ApplicationUser(0L, username, encodedPassword, name, email, roles));
 
     }
 

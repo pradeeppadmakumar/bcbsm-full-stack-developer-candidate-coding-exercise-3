@@ -11,6 +11,11 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,18 +25,29 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
+@Builder
 public class ApplicationUser implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "user_id")
-    private Long userId;
+    private Long id;
 
     @Column(unique = true)
     private String username;
 
     @JsonIgnore
     private String password;
+
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String email;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -41,39 +57,6 @@ public class ApplicationUser implements UserDetails {
     )
     @JsonIgnore
     private Set<Role> authorities;
-
-    public ApplicationUser(){
-        super();
-        this.authorities = new HashSet<Role>();
-    }
-
-    public ApplicationUser(Long userId, String username, String password, Set<Role> authorities) {
-        super();
-        this.userId = userId;
-        this.username = username;
-        this.password = password;
-        this.authorities = authorities;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setAuthorities(Set<Role> authorities) {
-        this.authorities = authorities;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
