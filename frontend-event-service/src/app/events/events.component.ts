@@ -27,7 +27,7 @@ export class EventsComponent {
   }
 
   routeToEvent(id: any) {
-    this.router.navigate(['events/event/', id])
+    this.router.navigate(['events/', id])
   }
 
   events: any = [
