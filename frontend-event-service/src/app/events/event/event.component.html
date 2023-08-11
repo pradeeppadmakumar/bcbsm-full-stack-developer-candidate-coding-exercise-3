@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="row g-5">
+    <div class="col-sm-4">
+      <img class="img-fluid" src="{{event?.imageLink}}" alt="Card image cap">
+    </div>
+    <div class="col-sm-8">
+      <h3>{{event?.title}}</h3>
+      <div class="row ">
+        <div class="col fs-5">{{event?.time | date:'yyyy/MM/dd HH:mm'}} </div>
+        <div class="col text-end fs-5">{{event?.duration}} </div>
+      </div>
+      <div class="row g-5 my-1">
+        <p class="fs-5">{{event?.description}}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="row my-5">
+    <div class="col-sm">
+      <div class="card" *ngIf="!this.jwtAuthenticationService.isAdminUser() && this.userFeedback === undefined">
+        <div class="card-header">
+          {{userId}}
+        </div>
+        <div class="card-body">
+          <form>
+            <div class="row  my-1">
+              <div class="col-sm">
+                <div class="form-group">
+                  <label for="exampleFormControlTextarea1">feedback</label>
+                  <textarea class="form-control" id="exampleFormControlTextarea1" name="newFeedback" [(ngModel)]="newFeedback"  rows="3"></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="row  my-3">
+              <div class="col-sm" >
+                <div class="form-group">
+                  <label for="exampleFormControlSelect1">rating</label>
+                  <select class="form-control" name="newRating" [(ngModel)]="newRating"  id="exampleFormControlSelect1">
+                    <option>5</option>
+                    <option>4</option>
+                    <option>3</option>
+                    <option>2</option>
+                    <option>1</option>
+                  </select>
+                </div>
+            </div>
+            </div>
+            <div class="row my-3">
+            <div class="col-sm" >
+              <div class="form-group">
+                <button type="submit" class="btn btn-primary" (click)=handleFeedbackSubmit()>Submit</button>
+              </div>
+            </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  *ngIf="this.userFeedback !== undefined" class="my-3">
+    <div class="alert alert-primary" role="alert" >
+      <div class="col fs-3">{{userFeedback.user.username}}</div>
+      <div class="col">{{userFeedback.comment}}</div>
+      <div class="col text-end">
+        <div *ngIf="userFeedback.rating === 5 || userFeedback.rating === '5'">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i>
+        </div>
+        <div *ngIf="userFeedback.rating === 4 || userFeedback.rating === '4'">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="userFeedback.rating === 3 || userFeedback.rating === '3'">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="userFeedback.rating === 2 || userFeedback.rating === '2'">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="userFeedback.rating === 1 || userFeedback.rating === '1'">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div  *ngIf="this.jwtAuthenticationService.isAdminUser()" class="my-3">
+    <div class="alert alert-primary" role="alert"  *ngFor="let feedback of allUserFeedbacks">
+      <div class="col fs-3">{{feedback?.user.username}}</div>
+      <div class="col fs-5">{{feedback.comment}}</div>
+      <div class="col text-end">
+        <div *ngIf="feedback.rating === 5">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i>
+        </div>
+        <div *ngIf="feedback.rating === 4">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="feedback.rating === 3">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="feedback.rating === 2">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i>
+        </div>
+        <div *ngIf="feedback.rating === 1">
+          <i class="fa-solid fa-star" style="color: #fff700;"></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i><i class="fa-solid fa-star" ></i>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
